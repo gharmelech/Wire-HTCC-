@@ -20,6 +20,7 @@
   Modified December 2014 by Ivan Grokhotkov (ivan@esp8266.com) - esp8266 support
   Modified April 2015 by Hrsto Gochkov (ficeto@ficeto.com) - alternative esp8266 support
   Modified Nov 2017 by Chuck Todd (ctodd@cableone.net) - ESP32 ISR Support
+  Modified Dec 2020 by Gal Harmelech (gal@harmelech.net) - added conditional sendStop and sendRestart
  */
 
 extern "C"
@@ -77,7 +78,7 @@ bool TwoWire::begin(uint32_t frequency, int8_t bus_num)
         I2C_1_SCBCLK_DIV_REG = div << 8;
         I2C_1_Start();
     }
-    STOP = true;
+    this->STOP = true;
     return true;
 }
 
